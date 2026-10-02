@@ -4,32 +4,22 @@ An end-to-end financial analytics solution built using **SQL Server (SSMS)**, **
 
 ---
 
-## 🎯 Key Business Insight Uncovered
-- Identified a massive **+430.07% budget overrun** in the **Travel & Entertainment** account under Operating Expenses (OpEx).
-- Overall company variance stood at **-60.50%**, highlighting critical areas for cost control and re-budgeting.
+## 🎯 Key Business Insights Uncovered
+- Identified a critical **+430.07% budget overrun** in the **Travel & Entertainment** account under Operating Expenses (OpEx).
+- Analyzed cross-category metrics highlighting variance drivers across all general ledger line items.
 
 ---
 
-## 🛠️ Tech Stack & Skills
-- **Database Architecture:** SQL Server (SSMS) - Star Schema Design
+## 🛠️ Tech Stack & Architecture
+- **Database Architecture:** SQL Server (SSMS) — Star Schema (`ChartofAccount`, `Budget2025`, `Actuals2025`)
 - **Business Intelligence:** Power BI Desktop
-- **Data Modeling:** Explicit DAX Measures & Relationships
-- **UI/UX Design:** Executive Dashboard Formatting, Dynamic Slicers & Visual Hierarchy
+- **Data Modeling & Logic:** Explicit DAX Measures (`Total Actual`, `Total Budget`, `Variance %`)
+- **UI/UX Design:** Dynamic Slicers, KPI Cards & Horizontal Bar Chart Layouts
 
 ---
 
-## 📐 Data Architecture (Star Schema)
-The reporting layer is built on a Star Schema model linking three core tables via `GLCode`:
-- **`ChartofAccount`** (Dimension Table: Categories, Sub-categories, Account Names)
-- **`Actuals2025`** (Fact Table: Actual Financial Transactions)
-- **`Budget2025`** (Fact Table: Allocated Budget Amounts)
-
----
-
-## 🧮 DAX Measures
-Explicit DAX logic was used to build dynamic indicators:
-
+## 🧮 Core DAX Measures
 ```dax
-Total Actual = SUM(Actuals2025[ActualAmount])
+Total Actual = SUM(Actuals2025[Amount])
 Total Budget = SUM(Budget2025[BudgetAmount])
 Variance % = DIVIDE([Total Actual] - [Total Budget], [Total Budget], 0)
